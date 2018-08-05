@@ -64,22 +64,22 @@ def renamePathes(InDir, InModuleName):
 def main(argv):
     moduleName='MODULE'
     templateDir='./Template'
-    templateDir='./Template18'
+    templateDir18='./Template18'
     customTemplate = ''
     ueVersion = 16;
     try:
-        opts, args = getopt.getopt(argv, "ht:m:", ["template=", "module="])
+        opts, args = getopt.getopt(argv, "ht:m:v:", ["template=", "module=", "version="])
     except getopt.GetoptError:
-        print 'CreateNewModule -m <ModuleName> -t <TemplateDir>'
+        print 'CreateNewModule -m <ModuleName> -t <TemplateDir> -v <Version>'
     for opt, arg in opts:
         if opt == '-h':
-            print 'CreateNewModule -m <ModuleName> -t <TemplateDir>'
+            print 'CreateNewModule -m <ModuleName> -t <TemplateDir> -v <Version>'
             sys.exit()
         elif opt in ("-m", "--module"):
             moduleName = arg
         elif opt in ("-t", "--template"):
             customTemplate = arg
-        elif opt in ("-v", "--version")
+        elif opt in ("-v", "--version"):
             ueVersion = arg
     print 'The new module is "', moduleName
     # copy to temporary
@@ -91,9 +91,7 @@ def main(argv):
         else:
             copyTemplateToTemporary(templateDir)
     # rename pathes
-        renamePathes(temporaryDir, moduleName)
-
-
+    renamePathes(temporaryDir, moduleName)
 
 if __name__ == '__main__':
     main(sys.argv[1:])
