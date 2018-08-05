@@ -64,6 +64,9 @@ def renamePathes(InDir, InModuleName):
 def main(argv):
     moduleName='MODULE'
     templateDir='./Template'
+    templateDir='./Template18'
+    customTemplate = ''
+    ueVersion = 16;
     try:
         opts, args = getopt.getopt(argv, "ht:m:", ["template=", "module="])
     except getopt.GetoptError:
@@ -75,12 +78,21 @@ def main(argv):
         elif opt in ("-m", "--module"):
             moduleName = arg
         elif opt in ("-t", "--template"):
-            templateDir = arg
+            customTemplate = arg
+        elif opt in ("-v", "--version")
+            ueVersion = arg
     print 'The new module is "', moduleName
     # copy to temporary
-    copyTemplateToTemporary(templateDir)
+    if (customTemplate != ''):
+        copyTemplateToTemporary(customTemplate)
+    else:
+        if (ueVersion >= 18):
+            copyTemplateToTemporary(templateDir18)
+        else:
+            copyTemplateToTemporary(templateDir)
     # rename pathes
-    renamePathes(temporaryDir, moduleName)
+        renamePathes(temporaryDir, moduleName)
+
 
 
 if __name__ == '__main__':
